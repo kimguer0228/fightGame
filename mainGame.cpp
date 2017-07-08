@@ -36,6 +36,8 @@ HRESULT mainGame::init(void)
 
 	SCENEMANAGER->changeScene("¼¿·ºÆ®¾À");
 	
+	//±èÅÂ¿Ï´Ù³à°¨
+
 	return S_OK;
 }
 
