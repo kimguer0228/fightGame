@@ -39,7 +39,14 @@ HRESULT mainGame::init(void)
 	SCENEMANAGER->addScene("Scene2", new Scene2);
 	SCENEMANAGER->addScene("Scene3", new Scene3);
 
+<<<<<<< HEAD
 	SCENEMANAGER->changeScene("Scene1");
+=======
+	SCENEMANAGER->changeScene("¼¿·ºÆ®¾À");
+	
+	//±èÅÂ¿Ï´Ù³à°¨
+	//¼®¿¹¼Ö´Ù³à°¨
+>>>>>>> 4619e612b9de549ed5a9150780ba52860183d953
 
 	return S_OK;
 }
