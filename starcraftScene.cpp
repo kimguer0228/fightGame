@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "starcraftScene.h"
 #include "battle.h"
+#include "dummy.h"
 
 starcraftScene::starcraftScene()
 {
@@ -16,6 +17,9 @@ HRESULT starcraftScene::init()
 {
 	_battle = new battle;
 	_battle->init("battle", WINSIZEX / 2, WINSIZEY / 2);
+
+	player1 = new dummy;
+	player1->init(true, WINSIZEX / 4, WINSIZEY / 2, 40, 40, VK_UP, VK_DOWN, VK_LEFT, VK_RIGHT, 'A', 'S');
 
 	return S_OK;
 }
@@ -33,6 +37,7 @@ void starcraftScene::update()
 
 
 	_battle->update();
+	player1->update();
 }
 
 void starcraftScene::render() 
@@ -43,6 +48,6 @@ void starcraftScene::render()
 	TextOut(getMemDC(), WINSIZEX / 2 + 200, WINSIZEY / 2, str, strlen(str));
 
 	_battle->render();
-
+	player1->render();
 
 }

@@ -30,7 +30,7 @@ using namespace THETA_UTIL;
 //==============================
 
 #define WINNAME (LPTSTR)(TEXT("Theta API"))	//윈도우 창 이름
-#define WINSTARTX 2000						//윈도우 시작좌표X
+#define WINSTARTX 200						//윈도우 시작좌표X
 #define WINSTARTY 50						//윈도우 시작좌표Y
 #define WINSIZEX 800						//윈도우 가로크기
 #define WINSIZEY 600						//윈도우 세로크기
