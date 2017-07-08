@@ -37,6 +37,7 @@ HRESULT mainGame::init(void)
 	SCENEMANAGER->changeScene("셀렉트씬");
 	
 	//김태완다녀감
+	//석예솔다녀감
 
 	return S_OK;
 }
