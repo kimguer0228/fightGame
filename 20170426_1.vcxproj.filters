@@ -49,14 +49,17 @@
     <Filter Include="2DGameFramework\effect">
       <UniqueIdentifier>{d30754ec-6dcb-4a66-90bc-0174547f501e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MainGame\starcraftScene">
-      <UniqueIdentifier>{854c96d4-a250-4ff9-a3ab-56b89ac41bb5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="2DGameFramework\button">
       <UniqueIdentifier>{e2b69baf-8cdc-4f02-b2b6-514dd12512a0}</UniqueIdentifier>
     </Filter>
     <Filter Include="MainGame\database">
       <UniqueIdentifier>{8f44d9cb-0af3-4c0a-aecf-9163ba00631f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\Player">
+      <UniqueIdentifier>{873cc2ce-e402-48e1-b166-22731e571c0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainGame\Scene">
+      <UniqueIdentifier>{68d3944f-2245-46e5-9940-ac67ad374ea8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -126,18 +129,6 @@
     <ClInclude Include="effectManager.h">
       <Filter>2DGameFramework\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="starcraftScene.h">
-      <Filter>MainGame\starcraftScene</Filter>
-    </ClInclude>
-    <ClInclude Include="ship.h">
-      <Filter>MainGame\starcraftScene</Filter>
-    </ClInclude>
-    <ClInclude Include="battle.h">
-      <Filter>MainGame\starcraftScene</Filter>
-    </ClInclude>
-    <ClInclude Include="selectScene.h">
-      <Filter>MainGame\starcraftScene</Filter>
-    </ClInclude>
     <ClInclude Include="sceneManager.h">
       <Filter>2DGameFramework\Manager</Filter>
     </ClInclude>
@@ -146,6 +137,24 @@
     </ClInclude>
     <ClInclude Include="database.h">
       <Filter>MainGame\database</Filter>
+    </ClInclude>
+    <ClInclude Include="dummy.h">
+      <Filter>MainGame\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="dummySkill.h">
+      <Filter>MainGame\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="playerNode.h">
+      <Filter>MainGame\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene1.h">
+      <Filter>MainGame\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene2.h">
+      <Filter>MainGame\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene3.h">
+      <Filter>MainGame\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -200,18 +209,6 @@
     <ClCompile Include="effectManager.cpp">
       <Filter>2DGameFramework\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="starcraftScene.cpp">
-      <Filter>MainGame\starcraftScene</Filter>
-    </ClCompile>
-    <ClCompile Include="ship.cpp">
-      <Filter>MainGame\starcraftScene</Filter>
-    </ClCompile>
-    <ClCompile Include="battle.cpp">
-      <Filter>MainGame\starcraftScene</Filter>
-    </ClCompile>
-    <ClCompile Include="selectScene.cpp">
-      <Filter>MainGame\starcraftScene</Filter>
-    </ClCompile>
     <ClCompile Include="sceneManager.cpp">
       <Filter>2DGameFramework\Manager</Filter>
     </ClCompile>
@@ -220,6 +217,24 @@
     </ClCompile>
     <ClCompile Include="database.cpp">
       <Filter>MainGame\database</Filter>
+    </ClCompile>
+    <ClCompile Include="dummy.cpp">
+      <Filter>MainGame\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="dummySkill.cpp">
+      <Filter>MainGame\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="playerNode.cpp">
+      <Filter>MainGame\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene1.cpp">
+      <Filter>MainGame\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene2.cpp">
+      <Filter>MainGame\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene3.cpp">
+      <Filter>MainGame\Scene</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
