@@ -146,3 +146,15 @@ HRESULT sceneManager::changeScene(string sceneName, string loadingSceneName)
 }
 
 
+gameNode* sceneManager::findScene(string strKey)
+{
+	mapSceneIter key = _mSceneList.find(strKey);
+
+	//key가 맵의 끝이 아니라면 == 키 값을 찾았으면
+	if (key != _mSceneList.end())
+	{
+		return key->second;
+	}
+
+	return NULL;
+}

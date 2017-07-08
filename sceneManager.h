@@ -31,8 +31,12 @@ public:
 	void update(void);
 	void render(void);
 
+	gameNode* getCS(void) { return _currentScene; }
+	
+
 	//씬 추가하는 함수
 	gameNode* addScene(string sceneName, gameNode* scene);
+	gameNode* findScene(string strKey);
 
 	gameNode* addLoadingScene(string loadingSceneName, gameNode* scene);
 
