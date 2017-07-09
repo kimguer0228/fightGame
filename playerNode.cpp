@@ -13,7 +13,7 @@ playerNode::~playerNode()
 
 
 //플레이어 최초 초기화 함수
-HRESULT playerNode::init(bool isPlayer1, float playerX, float playerY, float playerWidth, float playerHeight, int upKey, int downKey, int leftKey, int rightKey, int punchKey, int kickKey)
+HRESULT playerNode::init(bool isPlayer1, float playerX, float playerY, float playerWidth, float playerHeight, int upKey, int downKey, int leftKey, int rightKey, int punchKey, int kickKey, int Num)
 {
 	//키 관련 변수
 	_upKey = upKey;
@@ -41,10 +41,12 @@ HRESULT playerNode::init(bool isPlayer1, float playerX, float playerY, float pla
 
 	//1피 지정
 	_isPlayer1 = isPlayer1;
-	isRight = isPlayer1;
 
 	//중력초기화
 	gravity = 0;
+
+	//캐릭터 번호 초기화
+	CharacterNumber = Num;
 
 	return S_OK;
 };
@@ -55,7 +57,7 @@ void playerNode::release()
 void playerNode::update()
 {
 	basicMove();
-
+	if (currentHP < 0) currentHP = 0;
 };
 void playerNode::render()
 {

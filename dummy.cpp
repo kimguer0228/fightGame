@@ -2,9 +2,9 @@
 #include "dummy.h"
 
 
-HRESULT dummy::init(bool isPlayer1, float playerX, float playerY, float playerWidth, float playerHeight, int upKey, int downKey, int leftKey, int rightKey, int punchKey, int kickKey)
+HRESULT dummy::init(bool isPlayer1, float playerX, float playerY, float playerWidth, float playerHeight, int upKey, int downKey, int leftKey, int rightKey, int punchKey, int kickKey, int Num)
 {
-	playerNode::init(isPlayer1, playerX, playerY, playerWidth, playerHeight, upKey, downKey, leftKey, rightKey, punchKey, kickKey);
+	playerNode::init(isPlayer1, playerX, playerY, playerWidth, playerHeight, upKey, downKey, leftKey, rightKey, punchKey, kickKey, Num);
 
 	//이미지와 애니메이션을 플레이어 클래스에서 선언해줬으니 초기화까지 해줍니다.
 	_image = IMAGEMANAGER->addFrameImage("디오아이들", "dioImage/dio_idle_right.bmp", 900, 155, 5, 1, true, RGB(255, 0, 255));

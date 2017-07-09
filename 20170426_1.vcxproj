@@ -82,11 +82,11 @@
     <ClInclude Include="button.h" />
     <ClInclude Include="commonMacroFunction.h" />
     <ClInclude Include="database.h" />
-    <ClInclude Include="dummy.h" />
-    <ClInclude Include="dummySkill.h" />
     <ClInclude Include="effect.h" />
     <ClInclude Include="effectManager.h" />
     <ClInclude Include="gameNode.h" />
+    <ClInclude Include="heavy.h" />
+    <ClInclude Include="heavySkill.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="imageManager.h" />
     <ClInclude Include="keyManager.h" />
@@ -113,11 +113,11 @@
     <ClCompile Include="bullets.cpp" />
     <ClCompile Include="button.cpp" />
     <ClCompile Include="database.cpp" />
-    <ClCompile Include="dummy.cpp" />
-    <ClCompile Include="dummySkill.cpp" />
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="effectManager.cpp" />
     <ClCompile Include="gameNode.cpp" />
+    <ClCompile Include="heavy.cpp" />
+    <ClCompile Include="heavySkill.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="imageManager.cpp" />
     <ClCompile Include="keyManager.cpp" />

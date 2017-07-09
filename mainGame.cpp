@@ -34,19 +34,20 @@ HRESULT mainGame::init(void)
 	IMAGEMANAGER->addImage("Scene2_Yuri", "À¯¸®¾ó±¼.bmp", 100, 100, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("Scene2_HeavyD", "Çìºñµð¾ó±¼.bmp", 100, 100, true, RGB(255, 0, 255));
 
+	IMAGEMANAGER->addImage("Scene3_image", "Scene3_image.bmp", 1800, 600, false, RGB(255, 0, 255));
 
 	SCENEMANAGER->addScene("Scene1", new Scene1);
 	SCENEMANAGER->addScene("Scene2", new Scene2);
 	SCENEMANAGER->addScene("Scene3", new Scene3);
 
-<<<<<<< HEAD
+
 	SCENEMANAGER->changeScene("Scene1");
-=======
+
 	SCENEMANAGER->changeScene("¼¿·ºÆ®¾À");
 	
 	//±èÅÂ¿Ï´Ù³à°¨
 	//¼®¿¹¼Ö´Ù³à°¨
->>>>>>> 4619e612b9de549ed5a9150780ba52860183d953
+
 
 	return S_OK;
 }
@@ -68,6 +69,10 @@ void mainGame::update(void)
 	if (SCENEMANAGER->getCS() == SCENEMANAGER->findScene("Scene1"))
 	{
 		if (KEYMANAGER->isOnceKeyDown(VK_F1)) SCENEMANAGER->changeScene("Scene2");
+	}
+	if (SCENEMANAGER->getCS() == SCENEMANAGER->findScene("Scene2"))
+	{
+		if (DATABASE->getinfo().size() == 2) SCENEMANAGER->changeScene("Scene3");
 	}
 }
 

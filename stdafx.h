@@ -47,7 +47,6 @@ using namespace THETA_UTIL;
 #define TXTDATA txtData::getSingleton()
 #define DATABASE database::getSingleton()
 
-
 //==============================
 // ## 매크로함수 ## 17.04.26 ##
 //==============================

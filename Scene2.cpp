@@ -69,7 +69,8 @@ void Scene2::render()
 
 void Scene2::SelectChar()
 {
-	if (_Select[0].CharacterNumber2 == CHARNUM)
+	std::vector<string> _vTemp;
+	if (_Select[0].CharacterNumber2 == CHARNUM)		//고르면 못움직이게
 	{
 		if (KEYMANAGER->isOnceKeyDown(VK_LEFT)) (_Select[0].SlotNum != 0) ?
 			(_Select[0].rcSelect = _Slot[_Select[0].SlotNum - 1].rcSlot, _Select[0].SlotNum -= 1) :
@@ -77,7 +78,11 @@ void Scene2::SelectChar()
 		if (KEYMANAGER->isOnceKeyDown(VK_RIGHT)) (_Select[0].SlotNum != CHARNUM - 1) ?
 			(_Select[0].rcSelect = _Slot[_Select[0].SlotNum + 1].rcSlot, _Select[0].SlotNum += 1) :
 			(_Select[0].rcSelect = _Slot[0].rcSlot, _Select[0].SlotNum = 0);
-		if (KEYMANAGER->isOnceKeyDown('A')) _Select[0].CharacterNumber2 = _Slot[_Select[0].SlotNum].CharacterNumber;
+		if (KEYMANAGER->isOnceKeyDown('A'))		//선택하면 데이터베이스에 정보를 저장함
+		{
+			_Select[0].CharacterNumber2 = _Slot[_Select[0].SlotNum].CharacterNumber;
+			DATABASE->Makedatapushback(_Select[0].CharacterNumber2, true);
+		}
 	}
 	if (_Select[1].CharacterNumber2 == CHARNUM)
 	{
@@ -87,7 +92,10 @@ void Scene2::SelectChar()
 		if (KEYMANAGER->isOnceKeyDown(VK_NUMPAD6)) (_Select[1].SlotNum != CHARNUM - 1) ?
 			(_Select[1].rcSelect = _Slot[_Select[1].SlotNum + 1].rcSlot, _Select[1].SlotNum += 1) :
 			(_Select[1].rcSelect = _Slot[0].rcSlot, _Select[1].SlotNum = 0);
-		if (KEYMANAGER->isOnceKeyDown(VK_INSERT)) _Select[1].CharacterNumber2 = _Slot[_Select[1].SlotNum].CharacterNumber;
+		if (KEYMANAGER->isOnceKeyDown(VK_INSERT))
+		{
+			_Select[1].CharacterNumber2 = _Slot[_Select[1].SlotNum].CharacterNumber;
+			DATABASE->Makedatapushback(_Select[1].CharacterNumber2, false);
+		}
 	}
-	
 }

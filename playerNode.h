@@ -43,13 +43,22 @@ protected:
 	bool _isPlayer1;		//플레이어1(true) 인지 플레이어2(false) 인지 판별하는 함수
 	float gravity;			//중력값
 	int _upKey, _downKey, _rightKey, _leftKey, _punchKey, _kickKey;    //키입력 관련 변수
+	int CharacterNumber;	//캐릭터 번호
 
 public:
-	virtual HRESULT init(bool isPlayer1, float playerX, float playerY, float playerWidth, float playerHeight, int upKey, int downKey, int leftKey, int rightKey, int punchKey, int kickKey);
+	virtual HRESULT init(bool isPlayer1, float playerX, float playerY, float playerWidth, float playerHeight, int upKey, int downKey, int leftKey, int rightKey, int punchKey, int kickKey, int Num);
 	virtual void release();
 	virtual void update();
 	virtual void render();
 
+	int getcurrentHP(void) { return currentHP; }
+	int getmaxHP(void) { return maxHP; }
+
+	void getdamage(int Num) { currentHP -= Num; }
+
+	void setisRight(bool A) { isRight = A; }
+
+	float getX(void) { return x; }
 
 	//기본 이동 함수, 속도에 따른 좌표값이 변한다
 	virtual void basicMove();

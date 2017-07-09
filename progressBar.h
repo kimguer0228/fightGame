@@ -6,7 +6,8 @@ class progressBar : public gameNode
 private:
 	RECT _rcProgress;
 	int _x, _y;
-	float _width;
+	float _widthtop, _widthbottom;
+	float _height;
 
 	image* _progressBarTop;
 	image* _progressBarBottom;
@@ -16,6 +17,7 @@ public:
 	void release();
 	void update();
 	void render();
+	void render2();
 
 	void setGauge(float currentGauge, float maxGauge);
 
