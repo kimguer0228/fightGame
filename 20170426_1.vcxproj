@@ -90,6 +90,8 @@
     <ClInclude Include="image.h" />
     <ClInclude Include="imageManager.h" />
     <ClInclude Include="keyManager.h" />
+    <ClInclude Include="leona.h" />
+    <ClInclude Include="leonaSkill.h" />
     <ClInclude Include="mainGame.h" />
     <ClInclude Include="playerNode.h" />
     <ClInclude Include="progressBar.h" />
@@ -121,6 +123,8 @@
     <ClCompile Include="image.cpp" />
     <ClCompile Include="imageManager.cpp" />
     <ClCompile Include="keyManager.cpp" />
+    <ClCompile Include="leona.cpp" />
+    <ClCompile Include="leonaSkill.cpp" />
     <ClCompile Include="mainGame.cpp" />
     <ClCompile Include="playerNode.cpp" />
     <ClCompile Include="progressBar.cpp" />

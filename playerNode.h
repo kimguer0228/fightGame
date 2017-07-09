@@ -22,7 +22,8 @@ enum stateEnum
 	crouchKick,
 	skill1,
 	skill2,
-	skill3
+	skill3,
+	stateEnumEnd
 };
 
 //게임노드를 상속받은 플레이어의 마더 클래스 여러분은 이것을 상속받으시면 됩니다
@@ -32,6 +33,7 @@ protected:
 
 	image* _image;			//케릭터의 이미지
 	animation* _animation;	//케릭터의 애니메이션
+	animation* _playerAni[stateEnumEnd];	//케릭터 애니메이션 배열변수!
 	RECT rc;				//케릭터의 렉트 즉, 케릭터의 피격판정 박스
 	float x, y;				//좌표
 	float width, height;	//캐릭터 랙트의 가로와 세로

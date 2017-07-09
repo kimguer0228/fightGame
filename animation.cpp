@@ -130,9 +130,14 @@ void animation::setPlayFrame(int start, int end, BOOL reverse, BOOL loop)
 
 	if (start == end)
 	{
-		_playList.clear();
+		//이미지가 한장일 경우
+		_playList.push_back(start);
 		stop();
 		return;
+
+		//_playList.clear();
+		//stop();
+		//return;
 	}
 
 	if (start > end)
