@@ -23,7 +23,6 @@ HRESULT Scene3::init()
 	{
 		if (DATABASE->getinfo()[i]->Player1)
 		{
-<<<<<<< HEAD
 			if (DATABASE->getinfo()[i]->CharacterNumber == 3)
 			{
 				Player[0] = new heavy;	//플레이어 노드를 캐릭터번호에 맞는거로
@@ -34,10 +33,6 @@ HRESULT Scene3::init()
 				Player[0] = new leona;
 				Player[0]->init(true, WINSIZEX / 4, WINSIZEY - 50, 50, 200, VK_UP, VK_DOWN, VK_LEFT, VK_RIGHT, 'A', 'S', DATABASE->getinfo()[i]->CharacterNumber);
 			}
-=======
-			Player[0] = new heavy;	//플레이어 노드를 캐릭터번호에 맞는거로
-			Player[0]->init(true, WINSIZEX / 4, WINSIZEY - 100, 200, 300, VK_UP, VK_DOWN, VK_LEFT, VK_RIGHT, 'A', 'S', DATABASE->getinfo()[i]->CharacterNumber);
->>>>>>> be62355fc14c8164428d39670108cb0067c837a9
 		}
 		else
 		{
