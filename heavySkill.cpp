@@ -264,7 +264,7 @@ void skill1st::render()
 HRESULT skill1st::init(bool isPlayer1)
 {
 	_skill1st.hitbox = RectMakeCenter(0, 0, 60, 15);
-	_skill1st.damage = 150;
+	_skill1st.damage = 15;
 	_skill1st.isDown = true;
 	_skill1st.isFire = false;
 	_skill1st.isPlayer1 = isPlayer1;
@@ -305,8 +305,8 @@ void skill2nd::render()
 HRESULT skill2nd::init(bool isPlayer1)
 {
 	_skill2nd.hitbox = RectMakeCenter(0, 0, 60, 15);
-	_skill2nd.damage = 20;
-	_skill2nd.isDown = true;
+	_skill2nd.damage = 3;
+	_skill2nd.isDown = false;
 	_skill2nd.isFire = false;
 	_skill2nd.isPlayer1 = isPlayer1;
 

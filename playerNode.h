@@ -57,6 +57,10 @@ protected:
 	int CharacterNumber;	//캐릭터 번호
 	bool cameraMove;		//카메라이동 영향 받고있는가
 
+
+	//애니메이션 관련 불값
+	//bool
+
 	//스킬구조체
 	tagSkill punch_m;
 	tagSkill kick_m;

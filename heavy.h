@@ -73,6 +73,11 @@ private:
 	float _fCommandTime;
 	float _fCommandClear;
 
+	//애니메이션 중복 x 함수들
+	int hit1int;
+	int hit2int;
+	int standingint;
+
 
 public:
 	virtual HRESULT init(bool isPlayer1, float playerX, float playerY, float playerWidth, float playerHeight, int upKey, int downKey, int leftKey, int rightKey, int punchKey, int kickKey, int Num);

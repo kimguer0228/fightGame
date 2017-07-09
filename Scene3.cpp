@@ -198,19 +198,74 @@ void Scene3::playerPush()
 		structTemp[i] = Player[0]->getTagSkill(i);
 		if (IntersectRect(&rcTemp, &rc02, &structTemp[i].hitbox) && structTemp[i].isFire == true)
 		{
-			Player[1]->getdamage(structTemp[i].damage);
-			if (structTemp[i].isDown == false)
+			if (state2 != hit1 && state2 != hit2 && state2 != standing)
 			{
-				Player[1]->setState(hit1);
-			}
-			else if (structTemp[i].isDown == true)
-			{
-				Player[1]->setState(hit2);
+				Player[1]->getdamage(structTemp[i].damage);
+				if (structTemp[i].isDown == false)
+				{
+					Player[1]->setState(hit1);
+				}
+				else if (structTemp[i].isDown == true)
+				{
+					Player[1]->setState(hit2);
+				}
 			}
 			
 		}
 	}
+
+	//2->1
+	for (int i = 1; i < 10; i++)
+	{
+		structTemp[i] = Player[1]->getTagSkill(i);
+		if (IntersectRect(&rcTemp, &rc01, &structTemp[i].hitbox) && structTemp[i].isFire == true)
+		{
+			if (state1 != hit1 && state1 != hit2 && state1 != standing)
+			{
+				Player[0]->getdamage(structTemp[i].damage);
+				if (structTemp[i].isDown == false)
+				{
+					Player[0]->setState(hit1);
+				}
+				else if (structTemp[i].isDown == true)
+				{
+					Player[0]->setState(hit2);
+				}
+			}
+
+		}
+	}
+
+
+	//뒤로 밀려나는 함수
+	if (state1 == hit1)
+	{
+		if (p1right)
+		{
+			Player[0]->setX(x1 - 3);
+		}
+		else if (!p1right)
+		{
+			Player[0]->setX(x1 + 3);
+		}
+		
+	}
+	if (state2 == hit1)
+	{
+		if (p2right)
+		{
+			Player[1]->setX(x2 - 3);
+		}
+		else if (!p2right)
+		{
+			Player[1]->setX(x2 + 3);
+		}
+
+	}
+
 }
+
+
 
 /*
 void hitFunc(playerNode playerNum, tagSkill skilName)

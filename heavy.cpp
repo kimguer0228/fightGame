@@ -164,7 +164,9 @@ HRESULT heavy::init(bool isPlayer1, float playerX, float playerY, float playerWi
 	_fCommandTime = 0;
 
 
-	
+	hit1int = 0;
+	hit2int = 0;
+	standingint = 0;
 
 
 
@@ -203,6 +205,7 @@ void heavy::update()
 	_skill2effectAni->frameUpdate(TIMEMANAGER->getElapsedTime() * 5);
 	_skill3Ani->frameUpdate(TIMEMANAGER->getElapsedTime() * 5);
 	_skill3effectAni->frameUpdate(TIMEMANAGER->getElapsedTime() * 5);
+	_standingani->frameUpdate(TIMEMANAGER->getElapsedTime() * 5);
 
 
 	//구조체 받아오기
@@ -227,6 +230,9 @@ void heavy::render()
 	else if (state == backWalk)_backwalk->aniRender(getMemDC(), x - 456, y - 336, _backwalkani);
 	else if (state == jump) _jump->aniRender(getMemDC(), x - 456, y - 336, _jumpani);
 	else if (state == crouch) _crouch->aniRender(getMemDC(), x - 456, y - 336, _crouchani);
+	else if (state == hit1)  _hit1->aniRender(getMemDC(), x - 456, y - 336, _hit1ani);
+	else if (state == hit2)  _hit2->aniRender(getMemDC(), x - 456, y - 336, _hit2ani);
+	else if (state == standing)  _standing->aniRender(getMemDC(), x - 456, y - 336, _standingani);
 	else if (state == punch) _punchImage->aniRender(getMemDC(), x - 456, y - 336, _punchAni);
 	else if (state == kick) _kickImage->aniRender(getMemDC(), x - 456, y - 336, _kickAni);
 	else if (state == crouchPunch) _CpunchImage->aniRender(getMemDC(), x - 456, y - 336, _CpunchAni);
@@ -485,6 +491,14 @@ void heavy::keyControl()
 			_JkickAni->start();
 		}
 	}
+
+
+	if (KEYMANAGER->isOnceKeyDown('U'))
+	{
+		state = standing;
+		_standingani->start();
+		
+	}
 }
 
 void heavy::stateControl()
@@ -583,35 +597,49 @@ void heavy::stateControl()
 	}
 	else if (state == hit1)
 	{
-		//_hit1ani->start();
+	
+		if(hit1int == 0)_hit1ani->start();
+		hit1int++;
+		
 		if (isRight) _hit1ani->setPlayFrame(1, 4, false, false);
 		else if (!isRight) _hit1ani->setPlayFrame(7, 5, false, false);
 		
 		if (_hit1ani->isPlay() == 0)
 		{
 			state = idle;
+			hit1int = 0;
 		}
 		speedX = 0;
 		speedY = 0;
 	}
 	else if (state == hit2)
 	{
+		if (hit2int == 0)_hit2ani->start();
+		hit2int++;
 		if (isRight) _hit2ani->setPlayFrame(1, 8, false, false);
 		else if (!isRight) _hit2ani->setPlayFrame(15, 9, false, false);
 		if (_hit2ani->isPlay() == 0)
 		{
+			//_standingani->start();
 			state = standing;
+			hit2int = 0;
+			_standingani->start();
+			
 		}
 		speedX = 0;
 		speedY = 0;
+		
 	}
 	else if (state == standing)
 	{
-		if (isRight) _standingani->setPlayFrame(1, 4, false, false);
-		else if (!isRight) _standingani->setPlayFrame(7, 5, false, false);
-		if (_standingani->isPlay() == 0)
+		//if (standingint == 0)_standingani->start();
+		standingint++;
+		if (isRight) _standingani->setPlayFrame(0, 3, false, false);
+		else if (!isRight) _standingani->setPlayFrame(7, 4, false, false);
+		if (_standingani->isPlay ()== false)
 		{
 			state = idle;
+			standingint = 0;
 		}
 		speedX = 0;
 		speedY = 0;
