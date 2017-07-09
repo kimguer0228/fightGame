@@ -1,14 +1,10 @@
-﻿  playerNode.cpp
-d:\sga\github\fightgame\playernode.cpp(33): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-d:\sga\github\fightgame\playernode.cpp(79): warning C4305: '=': truncation from 'double' to 'float'
-  Scene3.cpp
-d:\sga\github\fightgame\scene3.cpp(20): warning C4018: '<': signed/unsigned mismatch
-d:\sga\github\fightgame\scene3.cpp(50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\sga\github\fightgame\scene3.cpp(51): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  Generating Code...
-  Skipping... (no relevant changes detected)
-  winMain.cpp
-  mainGame.cpp
-  heavy.cpp
+﻿  Scene3.cpp
+d:\sga\github\fightgame\playernode.h(67): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+d:\sga\github\fightgame\scene3.cpp(22): warning C4018: '<': signed/unsigned mismatch
+d:\sga\github\fightgame\scene3.cpp(52): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\sga\github\fightgame\scene3.cpp(53): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\sga\github\fightgame\scene3.cpp(79): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\sga\github\fightgame\scene3.cpp(102): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\sga\github\fightgame\scene3.cpp(111): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   20170426_1.vcxproj -> D:\SGA\github\fightGame\Debug\20170426_1.exe
   20170426_1.vcxproj -> D:\SGA\github\fightGame\Debug\20170426_1.pdb (Full PDB)

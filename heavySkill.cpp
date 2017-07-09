@@ -8,9 +8,14 @@ skillPunch::skillPunch()
 skillPunch::~skillPunch()
 {
 }
-void skillPunch::punchFire(float playerX, float playerY)
+void skillPunch::punchFire1(float playerX, float playerY)
 {
 	_punch.hitbox = RectMakeCenter(playerX + 155, playerY, 130, 30);
+	_punch.isFire = true;
+}
+void skillPunch::punchFire2(float playerX, float playerY)
+{
+	_punch.hitbox = RectMakeCenter(playerX - 155, playerY, 130, 30);
 	_punch.isFire = true;
 }
 
@@ -42,9 +47,14 @@ skillKick::~skillKick()
 {
 }
 
-void skillKick::kickFire(float playerX, float playerY)
+void skillKick::kickFire1(float playerX, float playerY)
 {
 	_kick.hitbox = RectMakeCenter(playerX + 100, playerY + 20, 90, 50);
+	_kick.isFire = true;
+}
+void skillKick::kickFire2(float playerX, float playerY)
+{
+	_kick.hitbox = RectMakeCenter(playerX - 100, playerY + 20, 90, 50);
 	_kick.isFire = true;
 }
 
@@ -76,9 +86,14 @@ skillCpunch::skillCpunch()
 skillCpunch::~skillCpunch()
 {
 }
-void skillCpunch::CpunchFire(float playerX, float playerY)
+void skillCpunch::CpunchFire1(float playerX, float playerY)
 {
 	_skillCpunch.hitbox = RectMakeCenter(playerX + 165, playerY + 70, 130, 30);
+	_skillCpunch.isFire = true;
+}
+void skillCpunch::CpunchFire2(float playerX, float playerY)
+{
+	_skillCpunch.hitbox = RectMakeCenter(playerX - 165, playerY + 70, 130, 30);
 	_skillCpunch.isFire = true;
 }
 
@@ -109,9 +124,14 @@ skillCkick::skillCkick()
 skillCkick::~skillCkick()
 {
 }
-void skillCkick::Fire(float playerX, float playerY)
+void skillCkick::Fire1(float playerX, float playerY)
 {
 	_skillCkick.hitbox = RectMakeCenter(playerX + 165, playerY + 150, 70, 40);
+	_skillCkick.isFire = true;
+}
+void skillCkick::Fire2(float playerX, float playerY)
+{
+	_skillCkick.hitbox = RectMakeCenter(playerX - 165, playerY + 150, 70, 40);
 	_skillCkick.isFire = true;
 }
 
@@ -142,9 +162,14 @@ skillJkick::skillJkick()
 skillJkick::~skillJkick()
 {
 }
-void skillJkick::Fire(float playerX, float playerY)
+void skillJkick::Fire1(float playerX, float playerY)
 {
 	_skillJkick.hitbox = RectMakeCenter(playerX + 140, playerY + 40, 70, 40);
+	_skillJkick.isFire = true;
+}
+void skillJkick::Fire2(float playerX, float playerY)
+{
+	_skillJkick.hitbox = RectMakeCenter(playerX - 140, playerY + 40, 70, 40);
 	_skillJkick.isFire = true;
 }
 
@@ -176,9 +201,14 @@ skillJpunch::skillJpunch()
 skillJpunch::~skillJpunch()
 {
 }
-void skillJpunch::Fire(float playerX, float playerY)
+void skillJpunch::Fire1(float playerX, float playerY)
 {
 	_skillJpunch.hitbox = RectMakeCenter(playerX + 140, playerY + 100, 70, 40);
+	_skillJpunch.isFire = true;
+}
+void skillJpunch::Fire2(float playerX, float playerY)
+{
+	_skillJpunch.hitbox = RectMakeCenter(playerX - 140, playerY + 100, 70, 40);
 	_skillJpunch.isFire = true;
 }
 
@@ -209,11 +239,17 @@ skill1st::skill1st()
 skill1st::~skill1st()
 {
 }
-void skill1st::Fire(float playerX, float playerY)
+void skill1st::Fire1(float playerX, float playerY)
 {
 	_skill1st.hitbox = RectMakeCenter(playerX + 200, playerY, 300, 400);
 	_skill1st.isFire = true;
 }
+void skill1st::Fire2(float playerX, float playerY)
+{
+	_skill1st.hitbox = RectMakeCenter(playerX - 200, playerY, 300, 400);
+	_skill1st.isFire = true;
+}
+
 
 void skill1st::render()
 {
@@ -244,9 +280,14 @@ skill2nd::skill2nd()
 skill2nd::~skill2nd()
 {
 }
-void skill2nd::Fire(float playerX, float playerY)
+void skill2nd::Fire1(float playerX, float playerY)
 {
 	_skill2nd.hitbox = RectMakeCenter(playerX + 155, playerY + 40, 170, 90);
+	_skill2nd.isFire = true;
+}
+void skill2nd::Fire2(float playerX, float playerY)
+{
+	_skill2nd.hitbox = RectMakeCenter(playerX - 155, playerY + 40, 170, 90);
 	_skill2nd.isFire = true;
 }
 
@@ -277,9 +318,14 @@ skill3rd::skill3rd()
 skill3rd::~skill3rd()
 {
 }
-void skill3rd::Fire(float playerX, float playerY)
+void skill3rd::Fire1(float playerX, float playerY)
 {
 	_skill3rd.hitbox = RectMakeCenter(playerX - 30, playerY + 40, 350, 450);
+	_skill3rd.isFire = true;
+}
+void skill3rd::Fire2(float playerX, float playerY)
+{
+	_skill3rd.hitbox = RectMakeCenter(playerX + 30, playerY + 40, 350, 450);
 	_skill3rd.isFire = true;
 }
 

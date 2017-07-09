@@ -37,37 +37,31 @@ HRESULT heavy::init(bool isPlayer1, float playerX, float playerY, float playerWi
 	_skill1Ani->init(_skill1Image->getWidth(), _skill1Image->getHeight(), _skill1Image->getFrameWidth(), _skill1Image->getFrameHeight());
 	_skill1Ani->setPlayFrame(1, 6, false, true);
 	_skill1Ani->setFPS(2);
-	_skill1Ani->start();
 
 	_skill1effectAni = new animation;
 	_skill1effectAni->init(_skill1effect->getWidth(), _skill1effect->getHeight(), _skill1effect->getFrameWidth(), _skill1effect->getFrameHeight());
 	_skill1effectAni->setPlayFrame(1, 6, false, true);
 	_skill1effectAni->setFPS(2);
-	_skill1effectAni->start();
 
 	_skill2Ani = new animation;
 	_skill2Ani->init(_skill2Image->getWidth(), _skill2Image->getHeight(), _skill2Image->getFrameWidth(), _skill2Image->getFrameHeight());
 	_skill2Ani->setPlayFrame(1, 13, false, false);
 	_skill2Ani->setFPS(2);
-	_skill2Ani->start();
 
 	_skill2effectAni = new animation;
 	_skill2effectAni->init(_skill2effect->getWidth(), _skill2effect->getHeight(), _skill2effect->getFrameWidth(), _skill2effect->getFrameHeight());
 	_skill2effectAni->setPlayFrame(1, 13, false, false);
 	_skill2effectAni->setFPS(2);
-	_skill2effectAni->start();
 
 	_skill3Ani = new animation;
 	_skill3Ani->init(_skill3Image->getWidth(), _skill3Image->getHeight(), _skill3Image->getFrameWidth(), _skill3Image->getFrameHeight());
 	_skill3Ani->setPlayFrame(1, 13, false, false);
 	_skill3Ani->setFPS(2);
-	_skill3Ani->start();
 
 	_skill3effectAni = new animation;
 	_skill3effectAni->init(_skill3effect->getWidth(), _skill3effect->getHeight(), _skill3effect->getFrameWidth(), _skill3effect->getFrameHeight());
 	_skill3effectAni->setPlayFrame(1, 13, false, false);
 	_skill3effectAni->setFPS(2);
-	_skill3effectAni->start();
 
 	_idleani = new animation;
 	_idleani->init(_idle->getWidth(), _idle->getHeight(), _idle->getFrameWidth(), _idle->getFrameHeight());
@@ -107,7 +101,6 @@ HRESULT heavy::init(bool isPlayer1, float playerX, float playerY, float playerWi
 	_crouchani->init(_crouch->getWidth(), _crouch->getHeight(), _crouch->getFrameWidth(), _crouch->getFrameHeight());
 	_crouchani->setPlayFrame(1, 3, false, true);
 	_crouchani->setFPS(1);
-	_crouchani->start();
 
 	_jumpani = new animation;
 	_jumpani->init(_jump->getWidth(), _jump->getHeight(), _jump->getFrameWidth(), _jump->getFrameHeight());
@@ -144,6 +137,8 @@ HRESULT heavy::init(bool isPlayer1, float playerX, float playerY, float playerWi
 	_JkickAni->setPlayFrame(1, 4, false, false);
 	_JkickAni->setFPS(1);
 
+
+	
 
 	//공격 초기화
 	_punch = new skillPunch;
@@ -207,6 +202,7 @@ void heavy::update()
 
 void heavy::render()
 {
+	
 	if (state == idle)_idle->aniRender(getMemDC(), x - 456, y - 336, _idleani);
 	else if (state == walk)_walk->aniRender(getMemDC(), x - 456, y - 336, _walkani);
 	else if (state == backWalk)_backwalk->aniRender(getMemDC(), x - 456, y - 336, _backwalkani);
@@ -259,7 +255,10 @@ void heavy::keyControl()
 	if (KEYMANAGER->isOnceKeyDown(_upKey))
 	{
 		if (isRight) _jumpani->setPlayFrame(3, 7, false, true);
-		else if (!isRight) _jumpani->setPlayFrame(12, 8, false, true);
+		else if (!isRight)
+		{
+			_jumpani->setPlayFrame(12, 8, false, true);
+		}
 		if (state == idle || state == walk || state == backWalk)
 		{
 			state = jump;
@@ -272,7 +271,7 @@ void heavy::keyControl()
 	if (KEYMANAGER->isOnceKeyDown(_downKey))
 	{
 		if (isRight) _crouchani->setPlayFrame(1, 3, false, false);
-		else if (!isRight) _crouchani->setPlayFrame(6, 4, false, false);
+		else if (!isRight) _crouchani->setPlayFrame(5, 4, false, false);
 		if (state == idle || state == walk || state == backWalk)
 		{
 			state = crouch;
@@ -284,24 +283,27 @@ void heavy::keyControl()
 	if (KEYMANAGER->isStayKeyDown(_downKey))
 	{
 		if (isRight) _crouchani->setPlayFrame(2, 3, false, false);
-		else if (!isRight) _crouchani->setPlayFrame(6, 5, false, false);
+		else if (!isRight) _crouchani->setPlayFrame(5, 4, false, false);
 	}
 	if (KEYMANAGER->isOnceKeyUp(_downKey))
 	{
-		state = idle;
+		if (state == crouch)
+		{
+			state = idle;
+		}
 	}
 
 	if (KEYMANAGER->isOnceKeyDown(_rightKey))
 	{
 		if (isRight) _walkani->setPlayFrame(1, 12, false, true);
-		else if (!isRight) _backwalkani->setPlayFrame(24, 9, false, true);
+		else if (!isRight) _backwalkani->setPlayFrame(23, 13, false, true);
 
 		_vCOMMAND.push_back(_rightKey);
 	}
 	if (KEYMANAGER->isOnceKeyDown(_leftKey))
 	{
 		if (isRight) _backwalkani->setPlayFrame(1, 12, false, true);
-		else if (!isRight) _walkani->setPlayFrame(24, 9, false, true);
+		else if (!isRight) _walkani->setPlayFrame(23, 13, false, true);
 
 		_vCOMMAND.push_back(_leftKey);
 	}
@@ -356,14 +358,14 @@ void heavy::keyControl()
 					if (_vCOMMAND[0] == _downKey && _vCOMMAND[1] == _rightKey && _vCOMMAND[2] == _punchKey)
 					{
 						state = skill2;
-						_skill2->Fire(x, y);
+						_skill2->Fire1(x, y);
 						_skill2Ani->start();
 						_skill2effectAni->start();
 					}
 					else if (_vCOMMAND[0] == _rightKey && _vCOMMAND[1] == _downKey && _vCOMMAND[2] == _rightKey && _vCOMMAND[3] == _punchKey)
 					{
 						state = skill3;
-						_skill3->Fire(x, y);
+						_skill3->Fire1(x, y);
 						_skill3Ani->start();
 						_skill3effectAni->start();
 					}
@@ -374,14 +376,14 @@ void heavy::keyControl()
 					if (_vCOMMAND[0] == _downKey && _vCOMMAND[1] == _leftKey && _vCOMMAND[2] == _punchKey)
 					{
 						state = skill2;
-						_skill2->Fire(x, y);
+						_skill2->Fire2(x, y);
 						_skill2Ani->start();
 						_skill2effectAni->start();
 					}
 					else if (_vCOMMAND[0] == _leftKey && _vCOMMAND[1] == _downKey && _vCOMMAND[2] == _leftKey && _vCOMMAND[3] == _punchKey)
 					{
 						state = skill3;
-						_skill3->Fire(x, y);
+						_skill3->Fire2(x, y);
 						_skill3Ani->start();
 						_skill3effectAni->start();
 					}
@@ -391,20 +393,23 @@ void heavy::keyControl()
 			else
 			{
 				state = punch;
-				_punch->punchFire(x, y);
+				if (isRight) _punch->punchFire1(x, y);
+				else if (!isRight) _punch->punchFire2(x, y);
 				_punchAni->start();
 			}
 		}
 		else if (state == crouch)
 		{
 			state = crouchPunch;
-			_Cpunch->CpunchFire(x, y);
+			if (isRight) _Cpunch->CpunchFire1(x, y);
+			else if (!isRight) _Cpunch->CpunchFire2(x, y);
 			_CpunchAni->start();
 		}
 		else if (state == jump)
 		{
 			state = jumpPunch;
-			_Jpunch->Fire(x, y);
+			if (isRight) _Jpunch->Fire1(x, y);
+			else if(!isRight) _Jpunch->Fire2(x, y);
 			_JpunchAni->start();
 		}
 	}
@@ -420,7 +425,7 @@ void heavy::keyControl()
 						if (_vCOMMAND[0] == _downKey && _vCOMMAND[1] == _rightKey && _vCOMMAND[2] == _kickKey)
 						{
 							state = skill1;
-							_skill1->Fire(x, y);
+							_skill1->Fire1(x, y);
 							_skill1Ani->start();
 							_skill1effectAni->start();
 						}
@@ -430,7 +435,7 @@ void heavy::keyControl()
 					if (_vCOMMAND[0] == _downKey && _vCOMMAND[1] == _leftKey && _vCOMMAND[2] == _kickKey)
 					{
 						state = skill1;
-						_skill1->Fire(x, y);
+						_skill1->Fire2(x, y);
 						_skill1Ani->start();
 						_skill1effectAni->start();
 					}
@@ -439,20 +444,23 @@ void heavy::keyControl()
 			else
 			{
 				state = kick;
-				_kick->kickFire(x, y);
+				if (isRight) _kick->kickFire1(x, y);
+				else if (!isRight) _kick->kickFire2(x, y);
 				_kickAni->start();
 			}
 		}
 		else if (state == crouch)
 		{
 			state = crouchKick;
-			_Ckick->Fire(x, y);
+			if (isRight) _Ckick->Fire1(x, y);
+			else if (!isRight) _Ckick->Fire2(x, y);
 			_CkickAni->start();
 		}
 		else if (state == jump)
 		{
 			state = jumpKick;
-			_Jkick->Fire(x, y);
+			if (isRight) _Jkick->Fire1(x, y);
+			else if (!isRight) _Jkick->Fire2(x, y);
 			_JkickAni->start();
 		}
 	}
@@ -462,6 +470,14 @@ void heavy::stateControl()
 {
 	if (state == jump)
 	{
+		if (isRight)
+		{
+			_jumpani->setPlayFrame(1, 7, false, false);
+		}
+		else if (!isRight)
+		{
+			_jumpani->setPlayFrame(12, 8, false, false);
+		}
 		if (speedY > 0 && y >= WINSIZEY / 2)
 		{
 			state = idle;
@@ -477,8 +493,8 @@ void heavy::stateControl()
 		}
 		else if (!isRight)
 		{
-			_skill1Ani->setPlayFrame(12, 7, false, false);
-			_skill1effectAni->setPlayFrame(12, 7, false, false);
+			_skill1Ani->setPlayFrame(11, 7, false, false);
+			_skill1effectAni->setPlayFrame(11, 7, false, false);
 		}
 		if (_skill1Ani->isPlay() == 0)
 		{
@@ -498,8 +514,8 @@ void heavy::stateControl()
 		}
 		else if (!isRight)
 		{
-			_skill2Ani->setPlayFrame(26, 14, false, false);
-			_skill2effectAni->setPlayFrame(26, 14, false, false);
+			_skill2Ani->setPlayFrame(25, 14, false, false);
+			_skill2effectAni->setPlayFrame(25, 14, false, false);
 		}
 		if (_skill2Ani->isPlay() == 0)
 		{
@@ -519,8 +535,8 @@ void heavy::stateControl()
 		}
 		else if (!isRight)
 		{
-			_skill3Ani->setPlayFrame(26, 14, false, false);
-			_skill3effectAni->setPlayFrame(26, 14, false, false);
+			_skill3Ani->setPlayFrame(25, 14, false, false);
+			_skill3effectAni->setPlayFrame(25, 14, false, false);
 		}
 		if (_skill3Ani->isPlay() == 0)
 		{
@@ -532,6 +548,14 @@ void heavy::stateControl()
 	}
 	else if (state == idle)
 	{
+		if (isRight)
+		{
+			_idleani->setPlayFrame(1, 8, false, true);
+		}
+		else if (!isRight)
+		{
+			_idleani->setPlayFrame(15, 9, false, true);
+		}
 		speedX = 0;
 		speedY = 0;
 		y = WINSIZEY / 2;
@@ -539,7 +563,7 @@ void heavy::stateControl()
 	else if (state == hit1)
 	{
 		if (isRight) _hit1ani->setPlayFrame(1, 4, false, false);
-		else if (!isRight) _hit1ani->setPlayFrame(8, 5, false, false);
+		else if (!isRight) _hit1ani->setPlayFrame(7, 5, false, false);
 		if (_hit1ani->isPlay() == 0)
 		{
 			state = idle;
@@ -550,7 +574,7 @@ void heavy::stateControl()
 	else if (state == hit2)
 	{
 		if (isRight) _hit2ani->setPlayFrame(1, 8, false, false);
-		else if (!isRight) _hit2ani->setPlayFrame(16, 9, false, false);
+		else if (!isRight) _hit2ani->setPlayFrame(15, 9, false, false);
 		if (_hit2ani->isPlay() == 0)
 		{
 			state = standing;
@@ -561,7 +585,7 @@ void heavy::stateControl()
 	else if (state == standing)
 	{
 		if (isRight) _standingani->setPlayFrame(1, 4, false, false);
-		else if (!isRight) _standingani->setPlayFrame(8, 5, false, false);
+		else if (!isRight) _standingani->setPlayFrame(7, 5, false, false);
 		if (_standingani->isPlay() == 0)
 		{
 			state = idle;
@@ -579,10 +603,14 @@ void heavy::stateControl()
 	{
 		speedY = 0;
 	}
+	else if (state == backWalk)
+	{
+		speedY = 0;
+	}
 	else if (state == punch)
 	{
 		if (isRight) _punchAni->setPlayFrame(1, 4, false, false);
-		else if (!isRight) _punchAni->setPlayFrame(8, 5, false, false);
+		else if (!isRight) _punchAni->setPlayFrame(7, 5, false, false);
 		if (_punchAni->isPlay() == 0)
 		{
 			state = idle;
@@ -594,10 +622,12 @@ void heavy::stateControl()
 	else if (state == crouchPunch)
 	{
 		if (isRight) _CpunchAni->setPlayFrame(1, 4, false, false);
-		else if (!isRight) _CpunchAni->setPlayFrame(8, 5, false, false);
+		else if (!isRight) _CpunchAni->setPlayFrame(7, 5, false, false);
 		if (_CpunchAni->isPlay() == 0)
 		{
-			state = crouch;
+			if (KEYMANAGER->isStayKeyDown(_downKey)) state = crouch;
+			else state = idle;
+
 			_Cpunch->makeisFireFalse();
 		}
 		speedX = 0;
@@ -606,7 +636,7 @@ void heavy::stateControl()
 	else if (state == jumpPunch)
 	{
 		if (isRight) _JpunchAni->setPlayFrame(1, 4, false, false);
-		else if (!isRight) _JpunchAni->setPlayFrame(8, 5, false, false);
+		else if (!isRight) _JpunchAni->setPlayFrame(7, 5, false, false);
 		if (speedY > 0 && y >= WINSIZEY / 2)
 		{
 			state = idle;
@@ -622,7 +652,7 @@ void heavy::stateControl()
 	else if (state == kick)
 	{
 		if (isRight) _kickAni->setPlayFrame(1, 4, false, false);
-		else if (!isRight) _kickAni->setPlayFrame(8, 5, false, false);
+		else if (!isRight) _kickAni->setPlayFrame(7, 5, false, false);
 		if (_kickAni->isPlay() == 0)
 		{
 			state = idle;
@@ -634,10 +664,11 @@ void heavy::stateControl()
 	else if (state == crouchKick)
 	{
 		if (isRight) _CkickAni->setPlayFrame(1, 4, false, false);
-		else if (!isRight) _CkickAni->setPlayFrame(8, 5, false, false);
+		else if (!isRight) _CkickAni->setPlayFrame(7, 5, false, false);
 		if (_CkickAni->isPlay() == 0)
 		{
-			state = crouch;
+			if (KEYMANAGER->isStayKeyDown(_downKey)) state = crouch;
+			else state = idle;
 			_Ckick->makeisFireFalse();
 		}
 		speedX = 0;
@@ -646,7 +677,7 @@ void heavy::stateControl()
 	else if (state == jumpKick)
 	{
 		if (isRight) _JkickAni->setPlayFrame(1, 3, false, false);
-		else if (!isRight) _JkickAni->setPlayFrame(6, 4, false, false);
+		else if (!isRight) _JkickAni->setPlayFrame(5, 4, false, false);
 		if (speedY > 0 && y >= WINSIZEY / 2)
 		{
 			state = idle;

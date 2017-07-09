@@ -44,6 +44,7 @@ protected:
 	float gravity;			//중력값
 	int _upKey, _downKey, _rightKey, _leftKey, _punchKey, _kickKey;    //키입력 관련 변수
 	int CharacterNumber;	//캐릭터 번호
+	bool cameraMove;		//카메라이동 영향 받고있는가
 
 public:
 	virtual HRESULT init(bool isPlayer1, float playerX, float playerY, float playerWidth, float playerHeight, int upKey, int downKey, int leftKey, int rightKey, int punchKey, int kickKey, int Num);
@@ -57,8 +58,16 @@ public:
 	void getdamage(int Num) { currentHP -= Num; }
 
 	void setisRight(bool A) { isRight = A; }
+	bool getisRight(void) { return isRight; }
 
 	float getX(void) { return x; }
+	void setX(float X) { x = X; }
+
+	void setSpeed0(void) { speedX = 0; }
+	int getSpeed(void) { return speedX; }
+
+	RECT getRect(void) { return rc; }
+
 
 	//기본 이동 함수, 속도에 따른 좌표값이 변한다
 	virtual void basicMove();

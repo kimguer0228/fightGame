@@ -1,5 +1,6 @@
 #pragma once
-#include "gameNode.h"
+
+#include "playerNode.h"
 
 struct tagSkill
 {
@@ -9,7 +10,7 @@ struct tagSkill
 	bool isFire;
 };
 
-class skillPunch : public gameNode
+class skillPunch : public playerNode
 {
 private:
 	tagSkill _punch;
@@ -22,10 +23,11 @@ public:
 	~skillPunch();
 
 
-	void punchFire(float playerX, float playerY);
+	void punchFire1(float playerX, float playerY);
+	void punchFire2(float playerX, float playerY);
 	void makeisFireFalse(void);
 };
-class skillKick : public gameNode
+class skillKick : public playerNode
 {
 private:
 	tagSkill _kick;
@@ -38,11 +40,12 @@ public:
 	~skillKick();
 
 
-	void kickFire(float playerX, float playerY);
+	void kickFire1(float playerX, float playerY);
+	void kickFire2(float playerX, float playerY);
 	void makeisFireFalse(void);
 };
 
-class skillCpunch : public gameNode
+class skillCpunch : public playerNode
 {
 private:
 	tagSkill _skillCpunch;
@@ -55,11 +58,12 @@ public:
 	~skillCpunch();
 
 
-	void CpunchFire(float playerX, float playerY);
+	void CpunchFire1(float playerX, float playerY);
+	void CpunchFire2(float playerX, float playerY);
 	void makeisFireFalse(void);
 };
 
-class skillCkick : public gameNode
+class skillCkick : public playerNode
 {
 private:
 	tagSkill _skillCkick;
@@ -72,11 +76,12 @@ public:
 	~skillCkick();
 
 
-	void Fire(float playerX, float playerY);
+	void Fire1(float playerX, float playerY);
+	void Fire2(float playerX, float playerY);
 	void makeisFireFalse(void);
 };
 
-class skillJkick : public gameNode
+class skillJkick : public playerNode
 {
 private:
 	tagSkill _skillJkick;
@@ -89,10 +94,11 @@ public:
 	~skillJkick();
 
 
-	void Fire(float playerX, float playerY);
+	void Fire1(float playerX, float playerY);
+	void Fire2(float playerX, float playerY);
 	void makeisFireFalse(void);
 };
-class skillJpunch : public gameNode
+class skillJpunch : public playerNode
 {
 private:
 	tagSkill _skillJpunch;
@@ -105,11 +111,12 @@ public:
 	~skillJpunch();
 
 
-	void Fire(float playerX, float playerY);
+	void Fire1(float playerX, float playerY);
+	void Fire2(float playerX, float playerY);
 	void makeisFireFalse(void);
 };
 
-class skill1st : public gameNode
+class skill1st : public playerNode
 {
 private:
 	tagSkill _skill1st;
@@ -122,11 +129,12 @@ public:
 	~skill1st();
 
 
-	void Fire(float playerX, float playerY);
+	void Fire1(float playerX, float playerY);
+	void Fire2(float playerX, float playerY);
 	void makeisFireFalse(void);
 };
 
-class skill2nd : public gameNode
+class skill2nd : public playerNode
 {
 private:
 	tagSkill _skill2nd;
@@ -139,11 +147,12 @@ public:
 	~skill2nd();
 
 
-	void Fire(float playerX, float playerY);
+	void Fire1(float playerX, float playerY);
+	void Fire2(float playerX, float playerY);
 	void makeisFireFalse(void);
 };
 
-class skill3rd : public gameNode
+class skill3rd : public playerNode
 {
 private:
 	tagSkill _skill3rd;
@@ -156,7 +165,8 @@ public:
 	~skill3rd();
 
 
-	void Fire(float playerX, float playerY);
+	void Fire1(float playerX, float playerY);
+	void Fire2(float playerX, float playerY);
 	void makeisFireFalse(void);
 };
 

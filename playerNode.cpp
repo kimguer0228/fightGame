@@ -47,6 +47,7 @@ HRESULT playerNode::init(bool isPlayer1, float playerX, float playerY, float pla
 
 	//캐릭터 번호 초기화
 	CharacterNumber = Num;
+	
 
 	return S_OK;
 };
