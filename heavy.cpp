@@ -224,6 +224,8 @@ void heavy::update()
 
 void heavy::render()
 {
+
+	//Rectangle(getMemDC(), x - 456, y - 336, _idle->getFrameWidth(), _idle->getFrameHeight());
 	
 	if (state == idle)_idle->aniRender(getMemDC(), x - 456, y - 336, _idleani);
 	else if (state == walk)_walk->aniRender(getMemDC(), x - 456, y - 336, _walkani);

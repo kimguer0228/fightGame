@@ -22,7 +22,8 @@ enum stateEnum
 	crouchKick,
 	skill1,
 	skill2,
-	skill3
+	skill3,
+	stateEnumEnd
 };
 
 struct tagSkill
@@ -41,6 +42,7 @@ protected:
 
 	image* _image;			//케릭터의 이미지
 	animation* _animation;	//케릭터의 애니메이션
+	animation* _playerAni[stateEnumEnd];	//케릭터 애니메이션 배열변수!
 	RECT rc;				//케릭터의 렉트 즉, 케릭터의 피격판정 박스
 	RECT pushRc;			//케릭터 비비적 거리는 push렉트
 	float x, y;				//좌표

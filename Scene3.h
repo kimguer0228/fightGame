@@ -3,6 +3,7 @@
 #include "progressBar.h"
 #include "playerNode.h"
 #include "heavy.h"
+#include "leona.h"
 
 class Scene3 : public gameNode
 {

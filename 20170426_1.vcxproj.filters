@@ -156,6 +156,12 @@
     <ClInclude Include="heavySkill.h">
       <Filter>MainGame\Player</Filter>
     </ClInclude>
+    <ClInclude Include="leona.h">
+      <Filter>MainGame\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="leonaSkill.h">
+      <Filter>MainGame\Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -234,6 +240,12 @@
       <Filter>MainGame\Player</Filter>
     </ClCompile>
     <ClCompile Include="heavySkill.cpp">
+      <Filter>MainGame\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="leona.cpp">
+      <Filter>MainGame\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="leonaSkill.cpp">
       <Filter>MainGame\Player</Filter>
     </ClCompile>
   </ItemGroup>
