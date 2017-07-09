@@ -25,6 +25,15 @@ enum stateEnum
 	skill3
 };
 
+struct tagSkill
+{
+	RECT hitbox;
+	int damage;
+	bool isDown;
+	bool isFire;
+	bool isPlayer1;
+};
+
 //게임노드를 상속받은 플레이어의 마더 클래스 여러분은 이것을 상속받으시면 됩니다
 class playerNode : public gameNode
 {
@@ -33,9 +42,11 @@ protected:
 	image* _image;			//케릭터의 이미지
 	animation* _animation;	//케릭터의 애니메이션
 	RECT rc;				//케릭터의 렉트 즉, 케릭터의 피격판정 박스
+	RECT pushRc;			//케릭터 비비적 거리는 push렉트
 	float x, y;				//좌표
 	float width, height;	//캐릭터 랙트의 가로와 세로
 	float speedX, speedY;	//속도
+	float pushSpeedX;        //미는속도
 	stateEnum state;		//상태
 	bool isRight;			//방향판별불값 왼쪽 : false , 오른쪽 : true
 	int maxHP;
@@ -45,6 +56,17 @@ protected:
 	int _upKey, _downKey, _rightKey, _leftKey, _punchKey, _kickKey;    //키입력 관련 변수
 	int CharacterNumber;	//캐릭터 번호
 	bool cameraMove;		//카메라이동 영향 받고있는가
+
+	//스킬구조체
+	tagSkill punch_m;
+	tagSkill kick_m;
+	tagSkill Cpunch_m;
+	tagSkill Ckick_m;
+	tagSkill Jpunch_m;
+	tagSkill Jkick_m;
+	tagSkill skill1_m;
+	tagSkill skill2_m;
+	tagSkill skill3_m;
 
 public:
 	virtual HRESULT init(bool isPlayer1, float playerX, float playerY, float playerWidth, float playerHeight, int upKey, int downKey, int leftKey, int rightKey, int punchKey, int kickKey, int Num);
@@ -65,14 +87,70 @@ public:
 
 	void setSpeed0(void) { speedX = 0; }
 	int getSpeed(void) { return speedX; }
+	void setPushSpeedX(float _pushSpeedX) { pushSpeedX = _pushSpeedX; }
+	int getState(void) { return state; }
+	void setState(stateEnum enumNum) { state = enumNum; }
 
 	RECT getRect(void) { return rc; }
+	RECT getPushRect(void) { return pushRc; }
+
+	tagSkill getTagSkill(int number)
+	{
+		if (number == 1)
+		{
+			return punch_m;
+		}
+		else if (number == 2)
+		{
+			return kick_m;
+		}
+		else if (number == 3)
+		{
+			return Cpunch_m;
+		}
+		else if (number == 4)
+		{
+			return Ckick_m;
+		}
+		else if (number == 5)
+		{
+			return Jpunch_m;
+		}
+		else if (number == 6)
+		{
+			return Jkick_m;
+		}
+		else if (number == 7)
+		{
+			return skill1_m;
+		}
+		else if (number == 8)
+		{
+			return skill2_m;
+		}
+		else if (number == 9)
+		{
+			return skill3_m;
+		}
+		else return punch_m;
+	}
 
 
 	//기본 이동 함수, 속도에 따른 좌표값이 변한다
 	virtual void basicMove();
 
 
+	/*
+	//씬3에서 정보를 받기위한 함수
+	virtual float getX();
+	virtual int getCurrentHP();
+	virtual void HPChange(int damage);
+	virtual void makeIsRight(bool _isRight);
+	virtual RECT getRect();
+	virtual RECT getPushRect();
+	virtual bool getIsRight();
+	virtual void setX(float _x);
+	*/
 
 	playerNode();
 	~playerNode();

@@ -24,12 +24,13 @@ void skillPunch::render()
 	if (_punch.isFire)Rectangle(getMemDC(), _punch.hitbox.left, _punch.hitbox.top, _punch.hitbox.right, _punch.hitbox.bottom);
 }
 
-HRESULT skillPunch::init()
+HRESULT skillPunch::init(bool isPlayer1)
 {
 	_punch.hitbox = RectMakeCenter(0, 0, 60, 15);
 	_punch.damage = 7;
 	_punch.isDown = false;
 	_punch.isFire = false;
+	_punch.isPlayer1 = isPlayer1;
 
 	return S_OK;
 }
@@ -63,12 +64,13 @@ void skillKick::render()
 	if (_kick.isFire)Rectangle(getMemDC(), _kick.hitbox.left, _kick.hitbox.top, _kick.hitbox.right, _kick.hitbox.bottom);
 }
 
-HRESULT skillKick::init()
+HRESULT skillKick::init(bool isPlayer1)
 {
 	_kick.hitbox = RectMakeCenter(0, 0, 60, 15);
 	_kick.damage = 10;
 	_kick.isDown = false;
 	_kick.isFire = false;
+	_kick.isPlayer1 = isPlayer1;
 
 	return S_OK;
 }
@@ -102,12 +104,13 @@ void skillCpunch::render()
 	if (_skillCpunch.isFire)Rectangle(getMemDC(), _skillCpunch.hitbox.left, _skillCpunch.hitbox.top, _skillCpunch.hitbox.right, _skillCpunch.hitbox.bottom);
 }
 
-HRESULT skillCpunch::init()
+HRESULT skillCpunch::init(bool isPlayer1)
 {
 	_skillCpunch.hitbox = RectMakeCenter(0, 0, 60, 15);
 	_skillCpunch.damage = 7;
 	_skillCpunch.isDown = false;
 	_skillCpunch.isFire = false;
+	_skillCpunch.isPlayer1 = isPlayer1;
 
 	return S_OK;
 }
@@ -140,12 +143,13 @@ void skillCkick::render()
 	if (_skillCkick.isFire)Rectangle(getMemDC(), _skillCkick.hitbox.left, _skillCkick.hitbox.top, _skillCkick.hitbox.right, _skillCkick.hitbox.bottom);
 }
 
-HRESULT skillCkick::init()
+HRESULT skillCkick::init(bool isPlayer1)
 {
 	_skillCkick.hitbox = RectMakeCenter(0, 0, 60, 15);
 	_skillCkick.damage = 10;
 	_skillCkick.isDown = true;
 	_skillCkick.isFire = false;
+	_skillCkick.isPlayer1 = isPlayer1;
 
 	return S_OK;
 }
@@ -178,13 +182,13 @@ void skillJkick::render()
 	if (_skillJkick.isFire)Rectangle(getMemDC(), _skillJkick.hitbox.left, _skillJkick.hitbox.top, _skillJkick.hitbox.right, _skillJkick.hitbox.bottom);
 }
 
-HRESULT skillJkick::init()
+HRESULT skillJkick::init(bool isPlayer1)
 {
 	_skillJkick.hitbox = RectMakeCenter(0, 0, 60, 15);
 	_skillJkick.damage = 10;
 	_skillJkick.isDown = true;
 	_skillJkick.isFire = false;
-
+	_skillJkick.isPlayer1 = isPlayer1;
 	return S_OK;
 }
 
@@ -217,12 +221,13 @@ void skillJpunch::render()
 	if (_skillJpunch.isFire)Rectangle(getMemDC(), _skillJpunch.hitbox.left, _skillJpunch.hitbox.top, _skillJpunch.hitbox.right, _skillJpunch.hitbox.bottom);
 }
 
-HRESULT skillJpunch::init()
+HRESULT skillJpunch::init(bool isPlayer1)
 {
 	_skillJpunch.hitbox = RectMakeCenter(0, 0, 60, 15);
 	_skillJpunch.damage = 7;
 	_skillJpunch.isDown = false;
 	_skillJpunch.isFire = false;
+	_skillJpunch.isPlayer1 = isPlayer1;
 
 	return S_OK;
 }
@@ -256,12 +261,13 @@ void skill1st::render()
 	if (_skill1st.isFire)Rectangle(getMemDC(), _skill1st.hitbox.left, _skill1st.hitbox.top, _skill1st.hitbox.right, _skill1st.hitbox.bottom);
 }
 
-HRESULT skill1st::init()
+HRESULT skill1st::init(bool isPlayer1)
 {
 	_skill1st.hitbox = RectMakeCenter(0, 0, 60, 15);
 	_skill1st.damage = 150;
 	_skill1st.isDown = true;
 	_skill1st.isFire = false;
+	_skill1st.isPlayer1 = isPlayer1;
 
 	return S_OK;
 }
@@ -296,12 +302,13 @@ void skill2nd::render()
 	if (_skill2nd.isFire)Rectangle(getMemDC(), _skill2nd.hitbox.left, _skill2nd.hitbox.top, _skill2nd.hitbox.right, _skill2nd.hitbox.bottom);
 }
 
-HRESULT skill2nd::init()
+HRESULT skill2nd::init(bool isPlayer1)
 {
 	_skill2nd.hitbox = RectMakeCenter(0, 0, 60, 15);
 	_skill2nd.damage = 20;
 	_skill2nd.isDown = true;
 	_skill2nd.isFire = false;
+	_skill2nd.isPlayer1 = isPlayer1;
 
 	return S_OK;
 }
@@ -334,13 +341,13 @@ void skill3rd::render()
 	if (_skill3rd.isFire)Rectangle(getMemDC(), _skill3rd.hitbox.left, _skill3rd.hitbox.top, _skill3rd.hitbox.right, _skill3rd.hitbox.bottom);
 }
 
-HRESULT skill3rd::init()
+HRESULT skill3rd::init(bool isPlayer1)
 {
 	_skill3rd.hitbox = RectMakeCenter(0, 0, 60, 15);
 	_skill3rd.damage = 25;
 	_skill3rd.isDown = true;
 	_skill3rd.isFire = false;
-
+	_skill3rd.isPlayer1 = isPlayer1;
 	return S_OK;
 }
 

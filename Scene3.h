@@ -20,6 +20,11 @@ public:
 
 	void setCamera();
 
+	//충돌관련함수
+	void whoIsRight();
+	void playerPush();
+	//void hitFunc(RECT playerRc, tagSkill skilName);
+
 	Scene3();
 	~Scene3();
 };
