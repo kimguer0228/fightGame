@@ -2,13 +2,7 @@
 
 #include "playerNode.h"
 
-struct tagSkill
-{
-	RECT hitbox;
-	int damage;
-	bool isDown;
-	bool isFire;
-};
+
 
 class skillPunch : public playerNode
 {
@@ -18,7 +12,7 @@ private:
 public:
 	void render();
 
-	HRESULT init();
+	HRESULT init(bool isPlayer1);
 	skillPunch();
 	~skillPunch();
 
@@ -26,6 +20,7 @@ public:
 	void punchFire1(float playerX, float playerY);
 	void punchFire2(float playerX, float playerY);
 	void makeisFireFalse(void);
+	tagSkill getStruct() { return _punch; }
 };
 class skillKick : public playerNode
 {
@@ -35,7 +30,7 @@ private:
 public:
 	void render();
 
-	HRESULT init();
+	HRESULT init(bool isPlayer1);
 	skillKick();
 	~skillKick();
 
@@ -43,6 +38,7 @@ public:
 	void kickFire1(float playerX, float playerY);
 	void kickFire2(float playerX, float playerY);
 	void makeisFireFalse(void);
+	tagSkill getStruct() { return _kick; }
 };
 
 class skillCpunch : public playerNode
@@ -53,7 +49,7 @@ private:
 public:
 	void render();
 
-	HRESULT init();
+	HRESULT init(bool isPlayer1);
 	skillCpunch();
 	~skillCpunch();
 
@@ -61,6 +57,7 @@ public:
 	void CpunchFire1(float playerX, float playerY);
 	void CpunchFire2(float playerX, float playerY);
 	void makeisFireFalse(void);
+	tagSkill getStruct() { return _skillCpunch; }
 };
 
 class skillCkick : public playerNode
@@ -71,7 +68,7 @@ private:
 public:
 	void render();
 
-	HRESULT init();
+	HRESULT init(bool isPlayer1);
 	skillCkick();
 	~skillCkick();
 
@@ -79,6 +76,7 @@ public:
 	void Fire1(float playerX, float playerY);
 	void Fire2(float playerX, float playerY);
 	void makeisFireFalse(void);
+	tagSkill getStruct() { return _skillCkick; }
 };
 
 class skillJkick : public playerNode
@@ -89,7 +87,7 @@ private:
 public:
 	void render();
 
-	HRESULT init();
+	HRESULT init(bool isPlayer1);
 	skillJkick();
 	~skillJkick();
 
@@ -97,6 +95,7 @@ public:
 	void Fire1(float playerX, float playerY);
 	void Fire2(float playerX, float playerY);
 	void makeisFireFalse(void);
+	tagSkill getStruct() { return _skillJkick; }
 };
 class skillJpunch : public playerNode
 {
@@ -106,7 +105,7 @@ private:
 public:
 	void render();
 
-	HRESULT init();
+	HRESULT init(bool isPlayer1);
 	skillJpunch();
 	~skillJpunch();
 
@@ -114,6 +113,7 @@ public:
 	void Fire1(float playerX, float playerY);
 	void Fire2(float playerX, float playerY);
 	void makeisFireFalse(void);
+	tagSkill getStruct() { return _skillJpunch; }
 };
 
 class skill1st : public playerNode
@@ -124,7 +124,7 @@ private:
 public:
 	void render();
 
-	HRESULT init();
+	HRESULT init(bool isPlayer1);
 	skill1st();
 	~skill1st();
 
@@ -132,6 +132,7 @@ public:
 	void Fire1(float playerX, float playerY);
 	void Fire2(float playerX, float playerY);
 	void makeisFireFalse(void);
+	tagSkill getStruct() { return _skill1st; }
 };
 
 class skill2nd : public playerNode
@@ -142,7 +143,7 @@ private:
 public:
 	void render();
 
-	HRESULT init();
+	HRESULT init(bool isPlayer1);
 	skill2nd();
 	~skill2nd();
 
@@ -150,6 +151,7 @@ public:
 	void Fire1(float playerX, float playerY);
 	void Fire2(float playerX, float playerY);
 	void makeisFireFalse(void);
+	tagSkill getStruct() { return _skill2nd; }
 };
 
 class skill3rd : public playerNode
@@ -160,7 +162,7 @@ private:
 public:
 	void render();
 
-	HRESULT init();
+	HRESULT init(bool isPlayer1);
 	skill3rd();
 	~skill3rd();
 
@@ -168,6 +170,7 @@ public:
 	void Fire1(float playerX, float playerY);
 	void Fire2(float playerX, float playerY);
 	void makeisFireFalse(void);
+	tagSkill getStruct() { return _skill3rd; }
 };
 
 

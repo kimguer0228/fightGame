@@ -142,26 +142,32 @@ HRESULT heavy::init(bool isPlayer1, float playerX, float playerY, float playerWi
 
 	//공격 초기화
 	_punch = new skillPunch;
-	_punch->init();
+	_punch->init(isPlayer1);
 	_Cpunch = new skillCpunch;
-	_Cpunch->init();
+	_Cpunch->init(isPlayer1);
 	_Jpunch = new skillJpunch;
-	_Jpunch->init();
+	_Jpunch->init(isPlayer1);
 	_kick = new skillKick;
-	_kick->init();
+	_kick->init(isPlayer1);
 	_Ckick = new skillCkick;
-	_Ckick->init();
+	_Ckick->init(isPlayer1);
 	_Jkick = new skillJkick;
-	_Jkick->init();
+	_Jkick->init(isPlayer1);
 	_skill1 = new skill1st;
-	_skill1->init();
+	_skill1->init(isPlayer1);
 	_skill2 = new skill2nd;
-	_skill2->init();
+	_skill2->init(isPlayer1);
 	_skill3 = new skill3rd;
-	_skill3->init();
+	_skill3->init(isPlayer1);
 
 	_fCommandClear = 2.5;
 	_fCommandTime = 0;
+
+
+	
+
+
+
 
 	return S_OK;
 };
@@ -197,6 +203,19 @@ void heavy::update()
 	_skill2effectAni->frameUpdate(TIMEMANAGER->getElapsedTime() * 5);
 	_skill3Ani->frameUpdate(TIMEMANAGER->getElapsedTime() * 5);
 	_skill3effectAni->frameUpdate(TIMEMANAGER->getElapsedTime() * 5);
+
+
+	//구조체 받아오기
+
+	punch_m = _punch->getStruct();
+	kick_m = _kick->getStruct();
+	Jpunch_m = _Jpunch->getStruct();
+	Jkick_m = _Jkick->getStruct();
+	Cpunch_m = _Cpunch->getStruct();
+	Ckick_m = _Ckick->getStruct();
+	skill1_m = _skill1->getStruct();
+	skill2_m = _skill2->getStruct();
+	skill3_m = _skill3->getStruct();
 };
 
 
@@ -231,17 +250,19 @@ void heavy::render()
 	}
 
 	//공격 히트박스 랜더
-	/*
-	_punch->render();
-	_kick->render();
-	_Cpunch->render();
-	_Ckick->render();
-	_Jpunch->render();
-	_Jkick->render();
-	_skill1->render();
-	_skill2->render();
-	_skill3->render();
-	*/
+	
+	//_punch->render();
+	//_kick->render();
+	//_Cpunch->render();
+	//_Ckick->render();
+	//_Jpunch->render();
+	//_Jkick->render();
+	//_skill1->render();
+	//_skill2->render();
+	//_skill3->render();
+	
+
+	playerNode :: render();
 };
 
 void heavy::keyControl()
@@ -562,8 +583,10 @@ void heavy::stateControl()
 	}
 	else if (state == hit1)
 	{
+		//_hit1ani->start();
 		if (isRight) _hit1ani->setPlayFrame(1, 4, false, false);
 		else if (!isRight) _hit1ani->setPlayFrame(7, 5, false, false);
+		
 		if (_hit1ani->isPlay() == 0)
 		{
 			state = idle;

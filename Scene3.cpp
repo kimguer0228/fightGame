@@ -23,6 +23,7 @@ HRESULT Scene3::init()
 	{
 		if (DATABASE->getinfo()[i]->Player1)
 		{
+<<<<<<< HEAD
 			if (DATABASE->getinfo()[i]->CharacterNumber == 3)
 			{
 				Player[0] = new heavy;	//플레이어 노드를 캐릭터번호에 맞는거로
@@ -33,11 +34,15 @@ HRESULT Scene3::init()
 				Player[0] = new leona;
 				Player[0]->init(true, WINSIZEX / 4, WINSIZEY - 50, 50, 200, VK_UP, VK_DOWN, VK_LEFT, VK_RIGHT, 'A', 'S', DATABASE->getinfo()[i]->CharacterNumber);
 			}
+=======
+			Player[0] = new heavy;	//플레이어 노드를 캐릭터번호에 맞는거로
+			Player[0]->init(true, WINSIZEX / 4, WINSIZEY - 100, 200, 300, VK_UP, VK_DOWN, VK_LEFT, VK_RIGHT, 'A', 'S', DATABASE->getinfo()[i]->CharacterNumber);
+>>>>>>> be62355fc14c8164428d39670108cb0067c837a9
 		}
 		else
 		{
 			Player[1] = new heavy;	//여기도 마찬가지
-			Player[1]->init(false, WINSIZEX * 3 / 4 - 50, WINSIZEY - 50, 50, 200, VK_NUMPAD8, VK_NUMPAD5, VK_NUMPAD4, VK_NUMPAD6, VK_INSERT, VK_HOME, DATABASE->getinfo()[i]->CharacterNumber);
+			Player[1]->init(false, WINSIZEX * 3 / 4 - 50, WINSIZEY - 100, 200, 300, VK_NUMPAD8, VK_NUMPAD5, VK_NUMPAD4, VK_NUMPAD6, 'O', 'P', DATABASE->getinfo()[i]->CharacterNumber);
 		}
 	}
 	_PlayerHP[0] = new progressBar;
@@ -79,6 +84,11 @@ void Scene3::update()
 	if (CameraX < 4) CameraX = 0;
 	else if (CameraX > 1800 - WINSIZEX - 4) CameraX = 1800 - WINSIZEX;
 
+
+
+	//충돌관련함수
+	whoIsRight();
+	playerPush();
 }
 
 void Scene3::render()	  
@@ -124,3 +134,104 @@ void Scene3::setCamera()
 		}
 	}
 }
+
+
+void Scene3::whoIsRight()
+{
+	float x1, x2;
+	x1 = Player[0]->getX();
+	x2 = Player[1]->getX();
+	if (x1 <= x2)
+	{
+		Player[0]->setisRight(true);
+		Player[1]->setisRight(false);
+	}
+	else if (x1 > x2)
+	{
+		Player[0]->setisRight(false);
+		Player[1]->setisRight(true);
+	}
+}
+
+void Scene3::playerPush()
+{
+
+	float x1, x2;
+	RECT rc1, rc2;
+	RECT rcTemp;
+	RECT rc01, rc02;
+	float s1, s2;
+	bool p1right = Player[0]->getisRight();
+	bool p2right = Player[1]->getisRight();
+	int state1, state2;
+	tagSkill structTemp[10];
+	x1 = Player[0]->getX();
+	x2 = Player[1]->getX();
+	rc1 = Player[0]->getPushRect();
+	rc2 = Player[1]->getPushRect();
+	rc01 = Player[0]->getRect();
+	rc02 = Player[1]->getRect();
+	s1 = Player[0]->getSpeed();
+	s2 = Player[1]->getSpeed();
+	state1 = Player[0]->getState();
+	state2 = Player[1]->getState();
+
+
+
+
+	//몸 부비부비
+	if (IntersectRect(&rcTemp, &rc1, &rc2))
+	{
+		Player[0]->setPushSpeedX(2*s2);
+		Player[1]->setPushSpeedX(2*s1);
+		if (p1right)
+		{
+			Player[0]->setX(x1 - 3);
+			Player[1]->setX(x2 + 3);
+		}
+		else
+		{
+			Player[0]->setX(x1 + 3);
+			Player[1]->setX(x2 - 3);
+		}
+
+	}
+	else
+	{
+		Player[0]->setPushSpeedX(0);
+		Player[1]->setPushSpeedX(0);
+	}
+
+	
+	//피격판정
+	//플1이 플2를 때릴때
+	for (int i = 1; i < 10; i++)
+	{
+		structTemp[i] = Player[0]->getTagSkill(i);
+		if (IntersectRect(&rcTemp, &rc02, &structTemp[i].hitbox) && structTemp[i].isFire == true)
+		{
+			Player[1]->getdamage(structTemp[i].damage);
+			if (structTemp[i].isDown == false)
+			{
+				Player[1]->setState(hit1);
+			}
+			else if (structTemp[i].isDown == true)
+			{
+				Player[1]->setState(hit2);
+			}
+			
+		}
+	}
+}
+
+/*
+void hitFunc(playerNode playerNum, tagSkill skilName)
+{
+	RECT rcTemp;
+
+	if (IntersectRect(&rcTemp, &playerRc, &skillName.hitbox))
+	{
+		player[1]
+	}
+}
+*/

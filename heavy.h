@@ -86,6 +86,8 @@ public:
 	//스테이트 컨트롤 함수 (업데이트에 들어감)
 	virtual void stateControl();
 
+
+	
 	heavy();
 	~heavy();
 };
