@@ -122,6 +122,25 @@ HRESULT leona::init(bool isPlayer1, float playerX, float playerY, float playerWi
 	_effectAni->setPlayFrame(0, 15);
 	_effectAni->setFPS(1);
 
+	//공격 초기화
+	_punch = new leonaPunch;
+	_punch->init(isPlayer1);
+	_Cpunch = new leonaCpunch;
+	_Cpunch->init(isPlayer1);
+	_Jpunch = new leonaJpunch;
+	_Jpunch->init(isPlayer1);
+	_kick = new leonaKick;
+	_kick->init(isPlayer1);
+	_Ckick = new leonaCkick;
+	_Ckick->init(isPlayer1);
+	_Jkick = new leonaJkick;
+	_Jkick->init(isPlayer1);
+	_skill1 = new leonaSkill1;
+	_skill1->init(isPlayer1);
+	_skill2 = new leonaSkill2;
+	_skill2->init(isPlayer1);
+	_skill3 = new leonaSkill3;
+	_skill3->init(isPlayer1);
 
 	//캐릭터 초기화
 	_image = IMAGEMANAGER->findImage("LEONA_IDLE");
@@ -143,19 +162,47 @@ void leona::update()
 
 	keyControl();
 	stateControl();
-	setImage();
-	
-	_playerAni[state]->frameUpdate(TIMEMANAGER->getElapsedTime() * 8);
-	_effectAni->frameUpdate(TIMEMANAGER->getElapsedTime() * 20);
+	setImage();	
 
 	if (state == skill1 && state == skill2 && state == skill3)
 	{
 		_playerAni[state]->frameUpdate(TIMEMANAGER->getElapsedTime() * 20);
 	}
+	else
+	{
+		_playerAni[state]->frameUpdate(TIMEMANAGER->getElapsedTime() * 8);
+	}
+
+	_effectAni->frameUpdate(TIMEMANAGER->getElapsedTime() * 20);
+
+
+	//구조체 받아오기
+	punch_m = _punch->getStruct();
+	kick_m = _kick->getStruct();
+	Jpunch_m = _Jpunch->getStruct();
+	Jkick_m = _Jkick->getStruct();
+	Cpunch_m = _Cpunch->getStruct();
+	Ckick_m = _Ckick->getStruct();
+	skill1_m = _skill1->getStruct();
+	skill2_m = _skill2->getStruct();
+	skill3_m = _skill3->getStruct();
 }
 void leona::render()
 {
 	gameNode::render();
+
+	//공격 히트박스 랜더
+
+	_punch->render();
+	_kick->render();
+	_Cpunch->render();
+	_Ckick->render();
+	_Jpunch->render();
+	_Jkick->render();
+	_skill1->render();
+	_skill2->render();
+	_skill3->render();
+
 
 	//Rectangle(getMemDC(), x - 456, y - 336, _image->getFrameWidth(), _image->getFrameHeight());
 
@@ -250,7 +297,7 @@ void leona::keyControl()
 	//펀치
 	if (KEYMANAGER->isOnceKeyDown(_punchKey))
 	{
-		if (state == walk || state == idle || state == backWalk)
+		if (state == walk || state == idle || state == backWalk || state == crouch)
 		{
 			_vCommand.push_back(_punchKey);
 
@@ -261,14 +308,14 @@ void leona::keyControl()
 					if (_vCommand[0] == _downKey && _vCommand[1] == _upKey && _vCommand[2] == _punchKey)
 					{
 						state = skill2;
-						//_skill2->Fire1(x, y);
+						_skill2->Fire1(x, y);
 						_playerAni[state]->start();
 					}
 					else if (_vCommand[0] == _leftKey && _vCommand[1] == _rightKey && _vCommand[2] == _punchKey)
 
 					{
 						state = skill3;
-						//_skill3->Fire1(x, y);
+						_skill3->Fire1(x, y);
 						_playerAni[state]->start();
 						_effectAni->start();
 					}
@@ -279,13 +326,13 @@ void leona::keyControl()
 					if (_vCommand[0] == _downKey && _vCommand[1] == _upKey && _vCommand[2] == _punchKey)
 					{
 						state = skill2;
-						//_skill2->Fire1(x, y);
+						_skill2->Fire1(x, y);
 						_playerAni[state]->start();
 					}
 					else if (_vCommand[0] == _rightKey && _vCommand[1] == _leftKey && _vCommand[2] == _punchKey)
 					{
 						state = skill3;
-						//_skill3->Fire1(x, y);
+						_skill3->Fire1(x, y);
 						_playerAni[state]->start();
 						_effectAni->start();
 					}
@@ -293,18 +340,28 @@ void leona::keyControl()
 			}
 			else
 			{
-				state = punch;
-				_playerAni[state]->start();
+				if (state == crouch)
+				{
+					state = crouchPunch;
+					if (isRight) _Cpunch->CpunchFire1(x, y);
+					else if (!isRight) _Cpunch->CpunchFire2(x, y);
+					_playerAni[state]->start();
+				}
+				else
+				{
+					state = punch;
+					if (isRight) _punch->punchFire1(x, y);
+					else if (!isRight) _punch->punchFire2(x, y);
+					_playerAni[state]->start();
+
+				}
 			}
-		}
-		else if (state == crouch)
-		{
-			state = crouchPunch;
-			_playerAni[state]->start();
 		}
 		else if (state == jump)
 		{
 			state = jumpPunch;
+			if (isRight) _Jpunch->Fire1(x, y);
+			else if (!isRight) _Jpunch->Fire2(x, y);
 			_playerAni[state]->start();
 		}
 	}
@@ -322,6 +379,7 @@ void leona::keyControl()
 					if (_vCommand[0] == _rightKey && _vCommand[1] == _kickKey)
 					{
 						state = skill1;
+						_skill1->Fire1(x, y);
 						_playerAni[state]->start();
 					}
 				}
@@ -330,6 +388,7 @@ void leona::keyControl()
 					if (_vCommand[0] == _leftKey && _vCommand[1] == _kickKey)
 					{
 						state = skill1;
+						_skill1->Fire2(x, y);
 						_playerAni[state]->start();
 					}
 				}
@@ -337,17 +396,23 @@ void leona::keyControl()
 			else
 			{
 				state = kick;
+				if (isRight) _kick->kickFire1(x, y);
+				else if (!isRight) _kick->kickFire2(x, y);
 				_playerAni[state]->start();
 			}
 		}
 		else if (state == crouch)
 		{
 			state = crouchKick;
+			if (isRight) _Ckick->Fire1(x, y);
+			else if (!isRight) _Ckick->Fire2(x, y);
 			_playerAni[state]->start();
 		}
 		else if (state == jump)
 		{
 			state = jumpKick;
+			if (isRight) _Jkick->Fire1(x, y);
+			else if (!isRight) _Jkick->Fire2(x, y);
 			_playerAni[state]->start();
 		}
 	}
@@ -393,7 +458,7 @@ void leona::stateControl()
 		break;
 	case hit1:
 	{
-		if (hit1int == 0) _playerAni[hit1]->start();
+		if (hit1int == 0) _playerAni[state]->start();
 		hit1int++;
 
 		if (!_playerAni[state]->isPlay())
@@ -406,8 +471,7 @@ void leona::stateControl()
 		break;
 	case hit2:
 	{
-
-		if (hit2int == 0) _playerAni[hit1]->start();
+		if (hit2int == 0) _playerAni[state]->start();
 		hit2int++;
 
 		if (!_playerAni[state]->isPlay())
@@ -439,6 +503,7 @@ void leona::stateControl()
 		if (!_playerAni[state]->isPlay())
 		{
 			state = idle;
+			_punch->makeisFireFalse();
 		}
 		speedX = 0;
 		speedY = 0;
@@ -449,6 +514,7 @@ void leona::stateControl()
 		if (!_playerAni[state]->isPlay())
 		{
 			state = idle;
+			_kick->makeisFireFalse();
 		}
 		speedX = 0;
 		speedY = 0;
@@ -460,10 +526,12 @@ void leona::stateControl()
 		{
 			state = idle;
 			speedY = 0;
+			_Jpunch->makeisFireFalse();
 		}
 		else if (!_playerAni[state]->isPlay())
 		{
 			state = jump;
+			_Jpunch->makeisFireFalse();
 		}
 	}
 		break;
@@ -473,10 +541,12 @@ void leona::stateControl()
 		{
 			state = idle;
 			speedY = 0;
+			_Jkick->makeisFireFalse();
 		}
 		else if (!_playerAni[state]->isPlay())
 		{
 			state = jump;
+			_Jkick->makeisFireFalse();
 		}
 	}
 		break;
@@ -486,6 +556,8 @@ void leona::stateControl()
 		{
 			if (KEYMANAGER->isStayKeyDown(_downKey)) state = crouch;
 			else state = idle;
+
+			_Cpunch->makeisFireFalse();
 		}
 		speedX = 0;
 		speedY = 0;
@@ -497,6 +569,8 @@ void leona::stateControl()
 		{
 			if (KEYMANAGER->isStayKeyDown(_downKey)) state = crouch;
 			else state = idle;
+
+			_Ckick->makeisFireFalse();
 		}
 		speedX = 0;
 		speedY = 0;
@@ -507,6 +581,7 @@ void leona::stateControl()
 		if (!_playerAni[state]->isPlay())
 		{
 			state = idle;
+			_skill1->makeisFireFalse();
 		}
 		speedX = 0;
 		speedY = 0;
@@ -517,6 +592,7 @@ void leona::stateControl()
 		if (!_playerAni[state]->isPlay())
 		{
 			state = idle;
+			_skill2->makeisFireFalse();
 		}
 		speedX = 0;
 		speedY = 0;
@@ -527,6 +603,7 @@ void leona::stateControl()
 		if (_effectAni->isPlay() == 0)
 		{
 			state = idle;
+			_skill3->makeisFireFalse();
 		}
 		speedX = 0;
 		speedY = 0;

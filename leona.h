@@ -1,38 +1,28 @@
 #pragma once
 #include "playerNode.h"
 #include <vector>
+#include "leonaSkill.h"
 
 class leona : public playerNode
 {
 private:
-	//animation* _idleAni;
-	//animation* _hit1Ani;
-	//animation* _hit2Ani;
-	//animation* _standingAni;
-
-	//animation* _walkAni;
-
-	//animation* _backwalkAni;
-	//animation* _crouchAni;
-	//animation* _jumpAni;
-
-	//animation* _punchAni;
-	//animation* _CpunchAni;
-	//animation* _JpunchAni;
-	//animation* _kickAni;
-	//animation* _CkickAni;
-	//animation* _JkickAni;
-	//animation* _skill1Ani;
-	//animation* _skill2Ani;
-	//animation* _skill3Ani;
-
-
 	animation* _effectAni; //스킬3 이펙트 애니메이션
 
 	float _commandTime;	//커맨드 소요시간
 	float _resetTime;	//커맨드 리셋 시간
 
 	vector<BYTE> _vCommand;
+
+	leonaPunch* _punch;
+	leonaKick* _kick;
+	leonaCpunch* _Cpunch;
+	leonaCkick* _Ckick;
+	leonaJpunch* _Jpunch;
+	leonaJkick* _Jkick;
+	leonaSkill1* _skill1;
+	leonaSkill2* _skill2;
+	leonaSkill3* _skill3;
+
 
 	//애니메이션 중복 x 함수들
 	int hit1int;
