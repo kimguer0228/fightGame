@@ -36,8 +36,16 @@ HRESULT Scene3::init()
 		}
 		else
 		{
-			Player[1] = new heavy;	//여기도 마찬가지
-			Player[1]->init(false, WINSIZEX * 3 / 4 - 50, WINSIZEY - 100, 200, 300, VK_NUMPAD8, VK_NUMPAD5, VK_NUMPAD4, VK_NUMPAD6, 'O', 'P', DATABASE->getinfo()[i]->CharacterNumber);
+			if (DATABASE->getinfo()[i]->CharacterNumber == 3)
+			{
+				Player[1] = new heavy;	//여기도 마찬가지
+				Player[1]->init(false, WINSIZEX * 3 / 4 - 50, WINSIZEY - 100, 200, 300, VK_NUMPAD8, VK_NUMPAD5, VK_NUMPAD4, VK_NUMPAD6, 'O', 'P', DATABASE->getinfo()[i]->CharacterNumber);
+			}
+			else if (DATABASE->getinfo()[i]->CharacterNumber == 1)
+			{
+				Player[1] = new leona;
+				Player[1]->init(false, WINSIZEX * 3 / 4 - 50, WINSIZEY - 100, 200, 300, VK_NUMPAD8, VK_NUMPAD5, VK_NUMPAD4, VK_NUMPAD6, 'O', 'P', DATABASE->getinfo()[i]->CharacterNumber);
+			}
 		}
 	}
 
